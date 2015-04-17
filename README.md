@@ -1,7 +1,18 @@
 FORGE Error Pages
 =================
 
-Installs FORGE specific custom error pages and configures the webserver to use them.
+Installs FORGE specific custom error pages and leaves configuration stubs for the webserver to use them.
+Custom error pages are usually handler at the virtual host level. To pick up the configuration add the following line to your virtual host configuration where it may be relevant:
+
+### Nginx
+```
+include /etc/nginx/conf.d/*.extra;
+```
+
+### Apache
+```
+IncludeOptional conf.d/*.extra
+```
 
 Requirements
 ------------

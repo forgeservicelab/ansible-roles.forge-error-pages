@@ -18,13 +18,13 @@
 - name: Upload configuration for apache
   copy:
     src: apache.conf
-    dest: "/etc/{{ 'apache2' if ansible_os_family == 'Debian' else 'httpd' }}/conf.d/forge_error_pages.conf"
+    dest: "/etc/{{ 'apache2' if ansible_os_family == 'Debian' else 'httpd' }}/conf.d/forge_error_pages.extra"
   notify: restart apache
   when: target_webserver == 'apache'
 
 - name: Upload configuration for nginx
   copy:
     src: nginx.conf
-    dest: /etc/nginx/conf.d/forge_error_pages.conf
+    dest: /etc/nginx/conf.d/forge_error_pages.extra
   notify: restart nginx
   when: target_webserver == 'nginx'
