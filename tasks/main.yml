@@ -3,16 +3,16 @@
 - name: Ensure target directory
   file:
     path: /var/www
-    owner: "{{ 'nginx' if target_webserver == 'nginx' else 'www-data' if ansible_os_family == 'Debian' else 'apache' }}"
-    group: "{{ 'nginx' if target_webserver == 'nginx' else 'www-data' if ansible_os_family == 'Debian' else 'apache' }}"
+    owner: "{{ 'www-data' if ansible_os_family == 'Debian' else 'nginx' if target_webserver == 'nginx' else 'apache' }}"
+    group: "{{ 'www-data' if ansible_os_family == 'Debian' else 'nginx' if target_webserver == 'nginx' else 'apache' }}"
     state: directory
 
 - name: Upload error files
   unarchive:
     src: errors.tgz
     dest: /var/www/
-    owner: "{{ 'nginx' if target_webserver == 'nginx' else 'www-data' if ansible_os_family == 'Debian' else 'apache' }}"
-    group: "{{ 'nginx' if target_webserver == 'nginx' else 'www-data' if ansible_os_family == 'Debian' else 'apache' }}"
+    owner: "{{ 'www-data' if ansible_os_family == 'Debian' else 'nginx' if target_webserver == 'nginx' else 'apache' }}"
+    group: "{{ 'www-data' if ansible_os_family == 'Debian' else 'nginx' if target_webserver == 'nginx' else 'apache' }}"
     creates: /var/www/errors
 
 - name: Upload configuration for apache
